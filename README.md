@@ -1,4 +1,4 @@
-myDotfiles
-==========
+dotfiles
+========
 
-dotfiles for bashrc and etc
+dotfiles
