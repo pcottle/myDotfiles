@@ -142,7 +142,7 @@ if [ -d ~/www ]; then
 fi
 
 # local
-if [ -d ~/Box\ Documents/ ]; then
+if [ -d ~/Dropbox/ ]; then
   echo "Going to dev server if you dont quit"
   sleep 0.5
   ssh dev
