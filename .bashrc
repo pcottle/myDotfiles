@@ -38,7 +38,7 @@ PS4='+ '
 proml
 
 if [ -d /usr/local/share/npm/lib/node_modules ]; then
-  export PATH="/usr/local/share/npm/lib/node_modules/grunt/bin/:$PATH"
+  export PATH="/usr/local/share/npm/bin/:$PATH"
   export PATH="/usr/local/share/npm/lib/node_modules/jasmine-node/bin:$PATH"
 fi
 
@@ -53,7 +53,7 @@ alias onelinedates="git log --pretty=format:'%h was %an, %ai, message: %s'"
 alias gitrage="git pull --rebase; git push"
 alias hrage="git push heroku master; git push"
 alias slime='open -a "Sublime Text 2"'
-alias ghrage="git checkout master; git push; git checkout gh-pages; git rebase master; git push origin gh-pages; git checkout master"
+alias ghrage="grunt lint && git checkout master && git push && git checkout gh-pages && git merge master && grunt build && git commit -am "rebuild for prod" && git push origin gh-pages && git branch -f trunk gh-pages && git checkout master"
 
 # git
 alias ga="git add"
