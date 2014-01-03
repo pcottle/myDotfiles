@@ -21,6 +21,10 @@ noremap <C-h> <C-w>h
 noremap <C-l> <C-w>l
 noremap <C-o> <C-w>w
 
+" turn off annoying undercase stuff
+vnoremap u a
+vnoremap U A
+
 set shortmess+=A
 
 function! Crazytown(query)
