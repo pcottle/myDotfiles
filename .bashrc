@@ -42,6 +42,15 @@ if [ -d /usr/local/share/npm/lib/node_modules ]; then
   export PATH="/usr/local/share/npm/lib/node_modules/jasmine-node/bin:$PATH"
 fi
 
+if [ -d ~/ztools ]; then
+  PATH=$PATH:$HOME/ztools/bins/search
+  PATH=$PATH:$HOME/ztools/bins/searchpath
+  PATH=$PATH:$HOME/ztools/bins/searchdiff
+  PATH=$PATH:$HOME/ztools/bins/searchedit
+  PATH=$PATH:$HOME/ztools/bins/arc
+  PATH=$PATH:$HOME/ztools/bins/misc
+fi
+
 if [ -d /usr/local/bin ]; then
   export PATH="/usr/local/bin/:$PATH"
 fi
