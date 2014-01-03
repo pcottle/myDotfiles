@@ -53,7 +53,7 @@ alias onelinedates="git log --pretty=format:'%h was %an, %ai, message: %s'"
 alias gitrage="git pull --rebase; git push"
 alias hrage="git push heroku master; git push"
 alias slime='open -a "Sublime Text 2"'
-alias ghrage="grunt lint && git checkout master && git push && git checkout gh-pages && git merge master && grunt build && git commit -am 'rebuild for prod' && git push origin gh-pages && git branch -f trunk gh-pages && git checkout master"
+alias ghrage="grunt lint && git checkout master && git push && git checkout gh-pages && git merge master -m 'merge master' && grunt build && git commit -am 'rebuild for prod' && git push origin gh-pages && git branch -f trunk gh-pages && git checkout master && grunt fastBuild"
 
 # git
 alias ga="git add"
