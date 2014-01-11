@@ -105,6 +105,7 @@ alias tnmux="tmux new-session -t"
 alias up="git checkout master; git pull; arc build"
 alias gfind='git svn find-rev'
 alias swpkill="find . -iname \".*.swp*\" -exec rm '{}' \;"
+alias logkill="sudo rm -f /private/var/log/asl/*.asl"
 
 # tools
 alias h="hphpd -h localhost"
