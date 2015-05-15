@@ -9,7 +9,7 @@ export EDITOR=vim
 source ~/git-completion.bash
 
 function parse_git_branch {
-    git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+    git symbolic-ref HEAD 2> /dev/null | cut -d '/' -f 3
 }
 
 function proml {
@@ -63,6 +63,9 @@ alias gitrage="git pull --rebase; git push"
 alias hrage="git push heroku master; git push"
 alias slime='open -a "Sublime Text 2"'
 alias ghrage="grunt lint && git checkout master && git push && git checkout gh-pages && git merge master -m 'merge master' && grunt build && git commit -am 'rebuild for prod' && git push origin gh-pages && git branch -f trunk gh-pages && git checkout master && grunt fastBuild"
+alias ghrageContinue="grunt build && git commit -am 'rebuild for prod' && git push origin gh-pages && git branch -f trunk gh-pages && git checkout master && grunt fastBuild"
+alias gmrage="git push && git checkout gh-pages && git rebase master && git push && git checkout master"
+alias pathRage="git checkout gh-pages && git merge master --no-edit && git push && git checkout master"
 
 # git
 alias ga="git add"
@@ -81,12 +84,15 @@ alias grc="git rebase --continue"
 alias ftrunk="git branch -f trunk master"
 
 alias cdc="pwd > ~/.dircopy; echo 'Changing dir clipboard to:'; cat ~/.dircopy"
-alias cdp="cd \$(cat ~/.dircopy)"
+alias cdp="cd \"\$(cat ~/.dircopy)\""
+
+alias wwwmode="echo 'hi' > ~/.devModeOn"
+alias localmode="rm ~/.devModeOn"
 
 # nonessential 
-alias macros="cat ~/Box\ Documents/Default\ Sync\ Folder/macros.txt"
+alias macros="cat ~/Dropbox\ \(Facebook\)/Default\ Sync\ Folder/macros.txt"
 alias addmacro="~/.addmacro.sh"
-alias di="cd ~/Desktop; rm *.png *.mov *.swf *.jpg *.JPG *.JPEG"
+alias di="cd ~/Desktop; rm *.png *.mov *.swf *.jpg *.JPG *.JPEG; cd -"
 
 # bridge stuff
 alias a="arc build"
@@ -106,15 +112,18 @@ alias up="git checkout master; git pull; arc build"
 alias gfind='git svn find-rev'
 alias swpkill="find . -iname \".*.swp*\" -exec rm '{}' \;"
 alias logkill="sudo rm -f /private/var/log/asl/*.asl"
+alias odkill="sudo killall opendirectoryd"
 
 # tools
 alias h="hphpd -h localhost"
 alias hh="hh_client"
+alias cstart="cd ~/fbobjc/Libraries/FBReactKit/; ./runServerHere.sh"
 
 # stolen from jingc
 alias files="cut -d: -f1 | uniq"
 alias seven='git log --oneline --since=7days --author=pcottle'
 alias vo="vim -O ./*"
+alias sdev="ssh dev"
 
 _git_branches()
 {
@@ -152,9 +161,14 @@ if [ -d ~/www ]; then
 fi
 
 # local
-if [ -d ~/Dropbox/ ]; then
+if [ -f ~/.devModeOn ]; then
   echo "Going to dev server if you dont quit"
   sleep 0.5
   ssh dev
 fi
+PATH=$PATH:~/src/devtools/arcanist/bin
+alias sql="/usr/local/Cellar/sqlite/3.8.2/bin/sqlite3"
 
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
+export VISUAL=vim

@@ -7,14 +7,6 @@ endif
 
 set number
 
-noremap <Space>m :e html/js/modules/
-noremap <Space>x :e flib/ui/xhp/
-noremap <Space>pm :TBGS providesModule 
-
-noremap <Space>j :CtrlP html/js<CR>
-noremap <Space>c :CtrlP html/css<CR>
-noremap <Space>p :CtrlP flib<CR>
-
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-h> <C-w>h
@@ -27,12 +19,6 @@ vnoremap U A
 
 set shortmess+=A
 
-function! Crazytown(query)
-  tabe
-  call BigGrep("t","s",a:query)
-endfunction
-command! -nargs=1 TE call Crazytown(<q-args>)
-
 hi Visual cterm=reverse ctermbg=Black
 hi Search cterm=reverse ctermbg=Black
 
@@ -41,33 +27,6 @@ syntax enable
 set background=dark
 let g:solarized_termcolors=256
 colorscheme solarized
-
-function GLHF()
-  Glog trunk..HEAD --
-  copen
-endfunction
-command! -nargs=0 GLHF call GLHF()
-
-function DefCOpen()
-  ca copen <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'call COpen()' : 'copen')<CR>
-  " ca copen <c-r>='call COpen()'<CR>
-endfunction
-function COpen()
-  unabbreviate copen
-  copen
-  set wfw
-  call DefCOpen()
-  nnoremap <silent> <buffer> q :ccl<CR>
-  nnoremap <silent> <buffer> t <C-W><CR><C-W>T
-  nnoremap <silent> <buffer> T <C-W><CR><C-W>TgT<C-W><C-W>
-  nnoremap <silent> <buffer> o <CR>
-  nnoremap <silent> <buffer> go <CR><C-W><C-W>
-  nnoremap <silent> <buffer> h <C-W><CR><C-W>K
-  nnoremap <silent> <buffer> H <C-W><CR><C-W>K<C-W>b
-  nnoremap <silent> <buffer> v <C-W><CR><C-W>H<C-W>b<C-W>J<C-W>t
-  nnoremap <silent> <buffer> gv <C-W><CR><C-W>H<C-W>b<C-W>J
-endfunction
-" call DefCOpen()
 
 set ruler
 
@@ -84,20 +43,4 @@ set nocompatible
 
 highlight OverLength ctermbg=red ctermfg=white guibg=#59292
 match OverLength /\%81v.\+/
-
-map <F9> :syntax sync fromstart<CR>
-
-au BufNewFile,BufRead *.{php,phpt} call PHPSettings()
-
-function! PHPSettings()
-    :set ts=2
-    :set sw=2 " treat 2 spaces as a tab when deleting2
-    :set sts=2 " treat 2 spaces as a tab when deleting
-    " highlight anything over 80 chars
-    highlight OverLength ctermbg=darkred ctermfg=grey guibg=#FFD9D9
-    highlight Error ctermbg=darkred ctermfg=grey guibg=#FFD9D9
-    match OverLength /\%>80v.\+/
-    let php_sql_query=1
-    let php_htmlInStrings=1
-endfunction
 
