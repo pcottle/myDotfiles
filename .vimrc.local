@@ -44,3 +44,32 @@ set nocompatible
 highlight OverLength ctermbg=red ctermfg=white guibg=#59292
 match OverLength /\%81v.\+/
 
+" next tab with C-o
+noremap <C-o> :tabn<CR>
+" prev tab with Alt-C
+noremap ø :tabp<CR>
+
+function MoveToNextTab()
+  "there is only one window
+  if tabpagenr('$') == 1 && winnr('$') == 1
+    return
+  endif
+  "preparing new window
+  let l:tab_nr = tabpagenr('$')
+  let l:cur_buf = bufnr('%')
+  if tabpagenr() < tab_nr
+    close!
+    if l:tab_nr == tabpagenr('$')
+      tabnext
+    endif
+    sp
+  else
+    close!
+    tabnew
+  endif
+  "opening current buffer in new window
+  exe "b".l:cur_buf
+endfunc
+" open up a new tab with comma t
+noremap ,t <Esc>:call MoveToNextTab()<CR>
+
