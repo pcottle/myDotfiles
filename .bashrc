@@ -86,7 +86,8 @@ alias ftrunk="git branch -f trunk master"
 alias cdc="pwd > ~/.dircopy; echo 'Changing dir clipboard to:'; cat ~/.dircopy"
 alias cdp="cd \"\$(cat ~/.dircopy)\""
 
-alias wwwmode="echo 'hi' > ~/.devModeOn"
+alias wwwmode="echo 'dev' > ~/.devModeOn"
+alias otherwwwmode="echo 'otherdev' > ~/.devModeOn"
 alias localmode="rm ~/.devModeOn"
 
 # nonessential 
@@ -164,7 +165,7 @@ fi
 if [ -f ~/.devModeOn ]; then
   echo "Going to dev server if you dont quit"
   sleep 0.5
-  ssh dev
+  ssh $(cat ~/.devModeOn)
 fi
 PATH=$PATH:~/src/devtools/arcanist/bin
 alias sql="/usr/local/Cellar/sqlite/3.8.2/bin/sqlite3"
