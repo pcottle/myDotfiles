@@ -84,7 +84,13 @@ else
   map ,e :e <C-R>=expand("%:p:h") . "\\" <CR>
 endif
 
+" cabbr TMPFIX 
+" or mkdir(fnamemodify(tempname(),':h'),'p',0700)
+map <C-a> :call mkdir(fnamemodify(tempname(), ":p:h")) <CR>
+map <C-d> :ccl <CR>
+
 " search tbgs but with leading providesModule
 cabbr TPRO TBGS @providesModule
 
-
+" open nerd tree to this location
+nmap <C-n> :NERDTree %<CR>

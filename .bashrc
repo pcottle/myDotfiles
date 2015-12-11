@@ -86,7 +86,7 @@ alias ftrunk="git branch -f trunk master"
 alias cdc="pwd > ~/.dircopy; echo 'Changing dir clipboard to:'; cat ~/.dircopy"
 alias cdp="cd \"\$(cat ~/.dircopy)\""
 
-alias wwwmode="echo 'dev' > ~/.devModeOn"
+alias wwwmode="echo 'devtunnel' > ~/.devModeOn"
 alias otherwwwmode="echo 'otherdev' > ~/.devModeOn"
 alias localmode="rm ~/.devModeOn"
 
